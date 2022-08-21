@@ -1,13 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.swiper-slide {
+  width: 270px !important;
+  z-index: 0 !important;
+}
+
+.mySwiper {
+  overflow: visible !important;
+  width: 100% !important;
+  z-index: 0 !important;
+}
+.swiper-wrapper {
+  width: 100% !important;
+  z-index: 0 !important;
+}
+.overview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.play:hover {
+  color: #009fd5;
+}
+.categories:hover {
+  color: white !important;
+}
+.details {
+  cursor: pointer;
+}
+.details:hover {
+  color: #bfddf9 !important;
+}
+.singlePageDetails:hover {
+  color: white !important;
+}
+.none {
+  display: none;
+}
+.link1 {
+  border-bottom: 1px solid white;
+  color: white !important;
 }
