@@ -60,3 +60,32 @@ code {
   border-bottom: 1px solid white;
   color: white !important;
 }
+.mySwiper.homepage .swiper-slide{
+  width: 100% !important;
+}
+.mySwiper.homepage .swiper-wrapper{
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 80% !important;
+}
+.mySwiper.homepage .swiper-pagination-bullet{
+  background-color: white;
+  width: 16px !important;
+  height: 16px !important;
+}
+.swiper-button-prev {
+  left: -14px !important;
+}
+.swiper-button-next{
+  right: -9px !important;
+}
+.swiper-button-next, .swiper-button-prev {
+  height: 100% !important;
+  top: 11% !important;
+  width: 52px !important;
+  transition: all .3s;
+  color: white !important;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover{
+  background-color: rgba(0, 0, 0, .7);
+}

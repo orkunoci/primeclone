@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 const CardSec = () => {
   const [list, setList] = useState([]);
   const router = useLocation();
-  const route = router.pathname.split("/").slice(1);
+  const route = router.pathname.split("/").slice(1)[0];
+  
   useEffect(() => {
     axios
       .get(
@@ -24,10 +25,10 @@ const CardSec = () => {
   return (
     <Box
       sx={{
-        marginTop: "5rem",
+        marginTop: "1rem",
         paddingLeft: "10px",
         paddingRight: "10px",
-        paddingBottom: "200px",
+        paddingBottom: "250px",
         position: "relative",
         zIndex: 2,
         overflow: "hidden",

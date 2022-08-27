@@ -5,6 +5,7 @@ import CategoriesCards from "../components/CategoriesCards";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Footer from "../components/Footer";
 const CategoriesPage = () => {
   const router = useLocation();
   const catName = router.pathname.split("categories/").slice(1);
@@ -62,6 +63,8 @@ const CategoriesPage = () => {
       >
         <CategoriesCards catName={catName} cats={cats} />
       </Box>
+
+      <Footer/>
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import Typography from "@mui/material/Typography";
-import { Divider, Menu } from "@mui/material";
-import { MenuItem } from "@mui/material";
-import { Icon, styled } from "@mui/material";
-import Categories from "./Categories";
+
+import { MenuItem ,styled, Menu,Paper ,Box} from "@mui/material";
+
+
 
 const MobileDropDown = () => {
   const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
@@ -69,7 +69,76 @@ const MobileDropDown = () => {
         <MenuItem>TV Shows</MenuItem>
         <MenuItem>Movies</MenuItem>
         {<MenuItem onClick={openSub}>asdasd</MenuItem>}
-        {openM ? <MenuItem>2</MenuItem> : undefined}
+        {openM ? <Paper sx={{
+            height:'max-content',
+            background: `radial-gradient(circle at 0% 10%, rgba(255, 244, 0, 0) 0%, rgba(0, 63, 255, 0.11) 0%, rgba(36, 61, 80, 1) 45%, rgba(36, 61, 80, 1) 100%);`
+
+        }}>
+          <Box sx={{textAlign:'left', padding:'10px 20px' }}>
+          <h5 style={{color:'black',fontSize:'18px' ,padding:' 10px 0'}}>Top Categories</h5>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>  Recently added Movies</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>  Recently added TV</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Kids</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Amazon Originals</p>
+          <h5 style={{color:'black',fontSize:'18px' }}>Genres</h5>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>  Action & Adventure</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>  Comedy</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Drama</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Documentary</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Fantasy</p>
+          <p style={{ 
+            fontSize:'16px',
+            fontWeight:400,
+            padding:'15px 0',
+            textAlign:'left'
+          }}>Horror</p>
+          </Box>
+        </Paper> : undefined}
       </Menu>
     </>
   );

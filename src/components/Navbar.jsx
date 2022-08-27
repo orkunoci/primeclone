@@ -33,7 +33,7 @@ const Navbar = () => {
       paddingY: 2,
     },
   }));
-  const [openSearch, setOpenSearch] = useState(false);
+  const [openSearch, setOpenSearch] = useState(true);
   const handleSearch = () => {
     setOpenSearch(!openSearch);
   };
@@ -42,7 +42,7 @@ const Navbar = () => {
     <AppBar
       position="static"
       elevation={0}
-      sx={{ background: "#1B2530", overflow: "hidden" }}
+      sx={{ background: "#1B2530"  }} // overflow: "hidden"
     >
       <Container maxWidth="disabled" paddingLeft={10} paddingRight={10}>
         <Box
@@ -81,44 +81,48 @@ const Navbar = () => {
             <MobileDropDown />
             <Categories />
           </Box>
-          <IconButton onClick={handleSearch}>
-            {openSearch ? (
-              <CloseIcon
-                sx={{
-                  color: "#fff",
-                  display: {
-                    xs: `${openSearch ? "block" : "none"}`,
-                    sm: "none",
-                  },
-                  position: "fixed",
-                  right: 0,
-                  zIndex: 5,
-                }}
-              />
-            ) : (
-              <SearchIcon
-                sx={{
-                  color: "#fff",
-                  display: {
-                    xs: `${openSearch ? "none" : "block"}`,
-                    sm: "none",
-                  },
-                }}
-                onClick={handleSearch}
-              />
-            )}
-          </IconButton>
-          <Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
-          <Box sx={{ display: "flex", alignItems: "center", marginRight: 2 }}>
-            <AccountCircleIcon sx={{ marginX: 2 }} paddingRight={2} />
-            <Typography
-              paddingRight={2}
-              variant="body2"
-              display={{ xs: "none" }}
-            >
-              User Name
-            </Typography>
-          </Box>
+        <Box sx={{display:'flex',alignItems:'center'}}> 
+        <IconButton onClick={handleSearch}>
+        {openSearch ? (
+          <CloseIcon
+            sx={{
+              color: "#fff",
+              display: {
+                xs: `${openSearch ? "block" : "none"}`,
+                sm: "none",
+                
+              },
+              order:1,
+              position: "absolute",
+              right: 0,
+              zIndex: 5,
+            }}
+          />
+        ) : (
+          <SearchIcon
+            sx={{
+              color: "#fff",
+              display: {
+                xs: `${openSearch ? "none" : "block"}`,
+                sm: "none",
+              },
+            }}
+            onClick={handleSearch}
+          />
+        )}
+      </IconButton>
+     {openSearch ? <Search  /> : null}
+      <Box sx={{ display: "flex", alignItems: "center", marginRight: 2 }}>
+        <AccountCircleIcon sx={{ marginX: 2 ,order:2}} paddingRight={2} /> 
+        <Typography
+          paddingRight={2}
+          variant="body2"
+          display={{ xs: "none" }}
+        >
+          User Name
+        </Typography>
+      </Box>
+        </Box>
         </Box>
       </Container>
     </AppBar>

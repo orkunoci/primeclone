@@ -1,65 +1,60 @@
-import { Box, Link } from "@mui/material";
+import { Box } from "@mui/material";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Recommandations from "../components/Recommandations";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
-const SingleMoviePage = () => {
+const SingleTvPage = () => {
   
   const [genreName, setGenreName] = useState();
   const [director, setDirector] = useState();
-  const [hour, setHour] = useState();
   const [film, setFilm] = useState();
   const [filmCredits, setfilmCredits] = useState();
-  const router = useLocation();
-  const filmsId = parseInt(router.pathname.split("films/").slice(1)[0]);  
- 
-  const fetchFilmData =()=>{
-    const cancelToken = axios.CancelToken.source()
-    axios
-    .get(
-      `https://api.themoviedb.org/3/movie/${filmsId}?api_key=c288fcfb3e533784be287382026d8752&language=en-US`
-   ,{cancelToken:cancelToken.token} )
-    .then((res) => {
-      const data = res.data;
-      setFilm(data);
-      calcRunTime(res.data.runtime);
-      setGenreName(res.data.genres);
-    });
-  }
-  
 
-  const fetchFilmCreditsData =()=>{
+  const router = useLocation();
+  const seriesId = parseInt(router.pathname.split("series/").slice(1)[0]);  
+
+  const fetchSerieCredits =()=>{
     const cancelToken = axios.CancelToken.source()
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${filmsId}/credits?api_key=c288fcfb3e533784be287382026d8752&language=en-US`
-      ,{cancelToken:cancelToken.token})
+        `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=c288fcfb3e533784be287382026d8752`
+      , {cancelToken:cancelToken.token})
       .then((res) => {
         const data = res.data;
         setfilmCredits(data);
-
-        setDirector(res.data.crew.filter(({ job }) => job === "Director"));
+        
+        setDirector(filmCredits && filmCredits.crew.filter(({known_for_department})=> known_for_department === 'Directing'));
+      console.log(director)
       });
+  
   }
+
+const fetchSerie = ()=>{
+  const cancelToken = axios.CancelToken.source()
+  axios
+  .get(
+    `https://api.themoviedb.org/3/tv/${seriesId}?api_key=c288fcfb3e533784be287382026d8752&language=en-US`
+  ,{cancelToken:cancelToken.token})
+  .then((res) => {
+    const data = res.data;
+    setFilm(data);
+    setGenreName(res.data.genres);
+  });
+
+}
+
   useEffect(() => {
-    fetchFilmData()
-    fetchFilmCreditsData()
     
-  }, [filmsId]);
- 
+    fetchSerie()
+    fetchSerieCredits()
+
+  }, [seriesId]);
 
 
-  const calcRunTime = (a) => {
-    const b = Math.trunc(a / 60);
-    var minutes = a % 60;
-    if (minutes === 0) {
-      setHour(b + " hours ");
-    } else {
-      setHour(b + " hours " + minutes + " minutes ");
-    }
-  };
+
 
   return (
     <>
@@ -116,7 +111,7 @@ const SingleMoviePage = () => {
                 textTransform: "capitalize",
               }}
             >
-              {film && film.title}
+              {film && film.name}
             </h3>
             <Box
               sx={{
@@ -129,9 +124,9 @@ const SingleMoviePage = () => {
                 color: "#8197a4",
               }}
             >
-              <p>{hour && hour}</p>
+          
               <p style={{ marginLeft: 20 }}>
-                {film && film.release_date.slice(0, 4)}
+                {}
               </p>
             </Box>
             <p
@@ -155,7 +150,7 @@ const SingleMoviePage = () => {
                   textTransform: "capitalize",
                 }}
               >
-                <p style={{ paddingTop: "5px" }}>yönetmenler</p>
+               {director &&  <p style={{ paddingTop: "5px" }}>yönetmenler</p>}
 
                 <p style={{ paddingTop: "5px" }}>Türler</p>
               </Box>
@@ -171,13 +166,13 @@ const SingleMoviePage = () => {
                   {director &&
                     director.map((d) => {
                       return (
-                        <Link
+                        <a
                           className="details"
                           style={{ color: "#009fd5", transition: "all .3s" }}
-                          to="/"
+                          href="/"
                         >
-                          {director.length === 1 ? d.name : d.name + ", "}
-                        </Link>
+                      { director &&  d.name + ', '}
+                        </a>
                       );
                     })}
                 </p>
@@ -189,7 +184,7 @@ const SingleMoviePage = () => {
                         <Link
                           style={{ color: "#009fd5", transition: "all .3s" }}
                           className="details"
-                          to="/"
+                          to={`/categories/${g.name}`}
                         >
                           {g.name + ", "}
                         </Link>
@@ -239,4 +234,4 @@ const SingleMoviePage = () => {
   );
 };
 
-export default SingleMoviePage;
+export default SingleTvPage;

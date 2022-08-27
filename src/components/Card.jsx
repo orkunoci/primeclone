@@ -6,7 +6,7 @@ import SubtitlesIcon from "@mui/icons-material/Subtitles";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
-const Card = ({ film }) => {
+const Card = ({ film , location}) => {
   return (
     <>
       <Paper
@@ -28,22 +28,37 @@ const Card = ({ film }) => {
           },
         }}
       >
-        <Link to={`/films/${film.id}`}>
-          <img
-            className="coverphoto"
-            src={
-              film.backdrop_path
-                ? `https://image.tmdb.org/t/p/w300/${film.backdrop_path}`
-                : `https://image.tmdb.org/t/p/w300/${film.poster_path}`
-            }
-            style={{
-              objectFit: "cover",
-              width: "100%",
-              height: "100%",
-            }}
-            alt=""
-          />
-        </Link>
+        {location === 'tvlist' ?  <Link to={`/series/${film.id}`}>
+        <img
+          className="coverphoto"
+          src={
+            film.backdrop_path
+              ? `https://image.tmdb.org/t/p/w300/${film.backdrop_path}`
+              : `https://image.tmdb.org/t/p/w300/${film.poster_path}`
+          }
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "100%",
+          }}
+          alt=""
+        />
+      </Link> : <Link to={`/films/${film.id}`}>
+      <img
+        className="coverphoto"
+        src={
+          film.backdrop_path
+            ? `https://image.tmdb.org/t/p/w300/${film.backdrop_path}`
+            : `https://image.tmdb.org/t/p/w300/${film.poster_path}`
+        }
+        style={{
+          objectFit: "cover",
+          width: "100%",
+          height: "100%",
+        }}
+        alt=""
+      />
+    </Link>}
 
         <Box
           sx={{
@@ -104,7 +119,7 @@ const Card = ({ film }) => {
                 paddingLeft: "20px",
               }}
             >
-              {film.title}
+              {film.title || film.name}
             </h3>
             <p
               style={{
@@ -127,7 +142,7 @@ const Card = ({ film }) => {
               }}
             >
               <SubtitlesIcon />
-              2022
+              {}
             </Box>
           </Paper>
         </Box>
@@ -137,3 +152,6 @@ const Card = ({ film }) => {
 };
 
 export default Card;
+
+
+/* film && film.first_air_date.slice(0,4) */

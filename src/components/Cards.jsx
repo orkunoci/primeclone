@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
+import { Navigation,Pagination } from "swiper";
 import axios from "axios";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
@@ -11,7 +11,8 @@ import { useLocation } from "react-router-dom";
 const Cards = ({ genreName, genreId }) => {
   const [films, setfilms] = useState([]);
   const router = useLocation();
-  const route = router.pathname.split("/").slice(1);
+  const route = router.pathname.split("/").slice(1)[0];
+  const [location, setLocation] = useState()
   useEffect(() => {
     axios
       .get(
@@ -23,7 +24,8 @@ const Cards = ({ genreName, genreId }) => {
         const data = res.data;
         setfilms(data.results.slice(0, 10));
       });
-  }, [route]);
+      setLocation(route)
+  }, [route,genreId]);
 
   return (
     <Box sx={{}}>
@@ -45,16 +47,18 @@ const Cards = ({ genreName, genreId }) => {
         }}
       >
         <Swiper
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={15}
           navigation={true}
-          modules={[Navigation]}
+          modules={[Navigation,Pagination]}
           className="mySwiper"
+       
+        
         >
           {films.map((film) => {
             return (
               <SwiperSlide key={film.id}>
-                <Card film={film} />
+                <Card location={location} film={film} />
               </SwiperSlide>
             );
           })}
