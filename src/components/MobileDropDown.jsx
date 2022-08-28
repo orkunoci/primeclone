@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Typography from "@mui/material/Typography";
 
 import { MenuItem ,styled, Menu,Paper ,Box} from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 
@@ -81,62 +82,62 @@ const MobileDropDown = () => {
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>  Recently added Movies</p>
+          }}> <Link to='/'> Recently added Movies</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>  Recently added TV</p>
+          }}> <Link to='/tvlist'>Recently added TV </Link> </p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Kids</p>
+          }}><Link to='/'>Kids</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Amazon Originals</p>
+          }}><Link to='/'>Amazon Originals</Link></p>
           <h5 style={{color:'black',fontSize:'18px' }}>Genres</h5>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>  Action & Adventure</p>
+          }}>  <Link to='/categories/action'>Action & Adventure</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>  Comedy</p>
+          }}> <Link to='/categories/comedy'>Comedy</Link> </p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Drama</p>
+          }}><Link to='/categories/drama'>Drama</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Documentary</p>
+          }}><Link to='/categories/documentary'>Documentary</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Fantasy</p>
+          }}><Link to='/categories/fantasy'>Fantasy</Link></p>
           <p style={{ 
             fontSize:'16px',
             fontWeight:400,
             padding:'15px 0',
             textAlign:'left'
-          }}>Horror</p>
+          }}><Link to='/categories/horror'>Horror</Link></p>
           </Box>
         </Paper> : undefined}
       </Menu>

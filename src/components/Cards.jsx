@@ -8,23 +8,44 @@ import axios from "axios";
 import Card from "./Card";
 import { useLocation } from "react-router-dom";
 
-const Cards = ({ genreName, genreId }) => {
+const Cards = ({ genreName, genreId,recommendedGenreIds }) => {
   const [films, setfilms] = useState([]);
   const router = useLocation();
   const route = router.pathname.split("/").slice(1)[0];
   const [location, setLocation] = useState()
+
+  const fetchData =()=>{
+      if( route === 'tvlist'){
+        axios
+        .get(`${process.env.REACT_APP_DISCOVER_BASE_URL}tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}`)
+        .then((res) => {
+          const data = res.data;
+          setfilms(data.results);
+        });
+
+      } else if(route === 'films' || route === ''){
+          axios
+          .get(`${process.env.REACT_APP_DISCOVER_BASE_URL}movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&&page=1&primary_release_year=2016&with_genres=${genreId}`)
+          .then((res) => {
+            const data = res.data;
+            setfilms(data.results); });
+      }else{
+        recommendedGenreIds &&
+        axios
+          .get(`${process.env.REACT_APP_DISCOVER_BASE_URL}movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&&page=1&primary_release_year=2016&with_genres=${recommendedGenreIds[0]}`)
+          .then((res) => {
+            const data = res.data;
+            setfilms(data.results); });
+      }
+     
+    
+     
+   setLocation(route)
+    }
+
+
   useEffect(() => {
-    axios
-      .get(
-        route === "tvlist"
-          ? `https://api.themoviedb.org/3/discover/tv?api_key=c288fcfb3e533784be287382026d8752&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}`
-          : `https://api.themoviedb.org/3/discover/movie?api_key=c288fcfb3e533784be287382026d8752&language=en-US&&page=1&primary_release_year=2016&with_genres=${genreId}`
-      )
-      .then((res) => {
-        const data = res.data;
-        setfilms(data.results.slice(0, 10));
-      });
-      setLocation(route)
+   fetchData()
   }, [route,genreId]);
 
   return (

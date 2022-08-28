@@ -15,7 +15,7 @@ const CategoriesPage = () => {
   useEffect(() => {
     axios
       .get(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=c288fcfb3e533784be287382026d8752&language=en-US"
+        `${process.env.REACT_APP_GENRE}movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
       )
       .then((res) => {
         const data = res.data.genres;

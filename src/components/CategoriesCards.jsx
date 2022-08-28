@@ -15,8 +15,8 @@ const CategoriesCards = ({ cats }) => {
       axios
         .get(
           route === "tvlist"
-            ? `https://api.themoviedb.org/3/discover/tv?api_key=c288fcfb3e533784be287382026d8752&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${cats[0].id}`
-            : `https://api.themoviedb.org/3/discover/movie?api_key=c288fcfb3e533784be287382026d8752&language=en-US&&page=1&&with_genres=${cats[0].id}`
+            ? `${process.env.REACT_APP_DISCOVER_BASE_URL}tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${cats[0].id}`
+            : `${process.env.REACT_APP_DISCOVER_BASE_URL}movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&&page=1&&with_genres=${cats[0].id}`
         )
         .then((res) => {
           const data = res.data;

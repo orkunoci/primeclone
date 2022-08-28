@@ -6,6 +6,7 @@ import Recommandations from "../components/Recommandations";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Footer from "../components/Footer";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 const SingleTvPage = () => {
   
   const [genreName, setGenreName] = useState();
@@ -20,7 +21,7 @@ const SingleTvPage = () => {
     const cancelToken = axios.CancelToken.source()
     axios
       .get(
-        `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=c288fcfb3e533784be287382026d8752`
+        `https://api.themoviedb.org/3/tv/${seriesId}/credits?api_key=${process.env.REACT_APP_API_KEY}`
       , {cancelToken:cancelToken.token})
       .then((res) => {
         const data = res.data;
@@ -36,7 +37,7 @@ const fetchSerie = ()=>{
   const cancelToken = axios.CancelToken.source()
   axios
   .get(
-    `https://api.themoviedb.org/3/tv/${seriesId}?api_key=c288fcfb3e533784be287382026d8752&language=en-US`
+    `https://api.themoviedb.org/3/tv/${seriesId}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
   ,{cancelToken:cancelToken.token})
   .then((res) => {
     const data = res.data;
@@ -150,9 +151,9 @@ const fetchSerie = ()=>{
                   textTransform: "capitalize",
                 }}
               >
-               {director &&  <p style={{ paddingTop: "5px" }}>yönetmenler</p>}
+               {director &&  <p style={{ paddingTop: "5px" }}>Directors</p>}
 
-                <p style={{ paddingTop: "5px" }}>Türler</p>
+                <p style={{ paddingTop: "5px" }}>Genres</p>
               </Box>
               <Box
                 sx={{
@@ -171,7 +172,7 @@ const fetchSerie = ()=>{
                           style={{ color: "#009fd5", transition: "all .3s" }}
                           href="/"
                         >
-                      { director &&  d.name + ', '}
+                      { director &&  d.name + ' '}
                         </a>
                       );
                     })}
@@ -186,16 +187,22 @@ const fetchSerie = ()=>{
                           className="details"
                           to={`/categories/${g.name}`}
                         >
-                          {g.name + ", "}
+                          {g.name + " "}
                         </Link>
                       );
                     })}
                 </p>
               </Box>
             </Box>
-            <Box sx={{ marginTop: "50px", backgroundColor: "blue" }}>
-              {" "}
-              oynat
+            <Box sx={{ marginTop: "50px" }}>
+              <Box sx={{ backgroundColor: "#0f79af",width:'100px',padding:'10px',borderRadius:1,color:'white'}}>
+                <Link to='/'>
+                  <Box sx={{display:"flex",alignItems:'center',color:'white'}}>
+                    <span ><PlayArrowIcon/></span>
+                    <span style={{marginLeft:12,fontSize:'18px',textTransform:'capitalize'}}>play</span>
+                 </Box>
+               </Link>
+             </Box>
             </Box>
           </Box>
         </Box>
@@ -210,7 +217,7 @@ const fetchSerie = ()=>{
           <img
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
             src={
-              film && `https://image.tmdb.org/t/p/w300/${film.backdrop_path}`
+              film && `https://image.tmdb.org/t/p/w1280/${film.backdrop_path}`
             }
             alt=""
           />

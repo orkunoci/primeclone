@@ -89,3 +89,18 @@ code {
 .swiper-button-next:hover, .swiper-button-prev:hover{
   background-color: rgba(0, 0, 0, .7);
 }
+@media only screen and (max-width: 768px) {
+  .mySwiper.homepage .swiper-pagination-bullet{
+ 
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .mySwiper.homepage .swiper-pagination-bullet{
+    background-color: white;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}

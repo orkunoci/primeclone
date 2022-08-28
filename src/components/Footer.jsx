@@ -5,7 +5,7 @@ import logo from '../assets/logo.svg'
 const Footer = () => {
   return (
     <Box sx={{display:'flex',alignItems:'center', flexDirection:'column',marginTop:'20px',paddingTop:'10px'}}> 
-      <Box sx={{width:'200px',height:'100px',overflow:'hidden'}}>
+      <Box sx={{width:'200px',height:'100px',overflow:'hidden',color:'white'}} >
         <img src={logo} style={{objectFit:'contain',width:'100%',height:'100%'}}/>
       </Box>
         Orkun Oci tarafindan clone web uygulamasi ornek proje olarak kodlanmstir 

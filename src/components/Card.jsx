@@ -1,12 +1,22 @@
 import { Box, Paper } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
 import AddIcon from "@mui/icons-material/Add";
 import SubtitlesIcon from "@mui/icons-material/Subtitles";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Card = ({ film , location}) => {
+  const router = useLocation();
+  const route = (router.pathname.split("/").slice(1)[0]);  
+  const [releaseYear,setRelaseYear]= useState()
+  const releaseYearCalc = ()=>{
+    route === 'tvlist' ? setRelaseYear(film.first_air_date.slice(0,4) ) : setRelaseYear( film.release_date.slice(0,4))
+  }
+  useEffect(()=>{
+    releaseYearCalc()
+  },[])
   return (
     <>
       <Paper
@@ -142,7 +152,7 @@ const Card = ({ film , location}) => {
               }}
             >
               <SubtitlesIcon />
-              {}
+              {releaseYear}
             </Box>
           </Paper>
         </Box>
@@ -154,4 +164,4 @@ const Card = ({ film , location}) => {
 export default Card;
 
 
-/* film && film.first_air_date.slice(0,4) */
+/* */
