@@ -7,7 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
 
-const Search = () => {
+const Search = ({openSearch}) => {
 
   const ref = useRef();
   const [query,setQuery]=useState('')
@@ -22,7 +22,7 @@ const Search = () => {
   useEffect(()=>{
       if(query !== '' && query !== ' '){
         setTimeout(() => {
-          axios.get(`${process.env.REACT_APP_SEARCH_MOVIE}/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&page=1&include_adult=false`).then(res=>{
+          axios.get(`${process.env.REACT_APP_SEARCH_MOVIE}?api_key=${process.env.REACT_APP_API_KEY}&query=${query}&page=1`).then(res=>{
             const data =  res.data.results
            setQueryResult(data.slice(0,10));
         })
@@ -53,7 +53,8 @@ const Search = () => {
       }}
       sx={{
       
-        width:{sm:'100px',md:'300px'},
+        width:'300px',
+        display:{xs:'none' ,sm:'block'},
      
         padding:'10px',
         borderRadius:'none',
@@ -96,7 +97,7 @@ const Search = () => {
         return (
           <MenuItem ref={ref} key={index} sx={{borderBottom:'1px solid gray',backgroundColor:'#344150' ,color:'white',fontSize:'16px',fontWeight:400 ,transition:'all 1s',padding:'10px' ,"&:hover":{
             backgroundColor:'#566b84',
-          }}}>{<a href={`/films/${a.id}`}>{a.title}</a>  }</MenuItem>
+          }}}>{<a style={{color:'white'}} href={`/films/${a.id}`}>{a.title}</a>  }</MenuItem>
         )
       })}
     </MenuList>

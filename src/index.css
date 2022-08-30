@@ -103,4 +103,12 @@ code {
     width: 0 !important;
     height: 0 !important;
   }
+  .moveHeader{
+    text-align: center;
+    font-size: 22px !important;
+  }
+  .filmOverView{
+    font-size: 14px !important;
+    text-align: center !important;
+  }
 }

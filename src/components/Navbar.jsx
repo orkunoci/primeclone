@@ -10,9 +10,10 @@ import MobileDropDown from "./MobileDropDown";
 import Categories from "./Categories";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import Search from "./Search";
+import MobileSearch from "./MobileSearch";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 const Navbar = () => {
   const NavText = styled(Typography)(({ theme }) => ({
     color: "white",
@@ -82,7 +83,7 @@ const Navbar = () => {
             <Categories />
           </Box>
         <Box sx={{display:'flex',alignItems:'center'}}> 
-        <IconButton onClick={handleSearch}>
+        <IconButton onClick={handleSearch} sx={{width:'100%'}}>
         {openSearch ? (
           <CloseIcon
             sx={{
@@ -111,7 +112,8 @@ const Navbar = () => {
           />
         )}
       </IconButton>
-     {openSearch ? <Search  /> : null}
+      <Search/>
+     {openSearch ? <MobileSearch openSearch={openSearch} /> : null}
       <Box sx={{ display: "flex", alignItems: "center", marginRight: 2 }}>
         <AccountCircleIcon sx={{ marginX: 2 ,order:2}} paddingRight={2} /> 
         <Typography

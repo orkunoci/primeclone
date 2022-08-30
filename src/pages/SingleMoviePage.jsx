@@ -68,11 +68,12 @@ const SingleMoviePage = () => {
       <Box
         sx={{
           maxWidth: "1600px",
-          padding: "0 50px",
-          marginBottom: "48px",
+          padding:{sm:'0 50px'},
+          marginBottom:{xs:'200px' ,sm:'48px'},
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexDirection:{xs:'column',sm:'row'},
           height: "500px",
           marginLeft: "auto",
           marginRight: "auto",
@@ -84,6 +85,7 @@ const SingleMoviePage = () => {
             width: "100%",
             height: "100%",
             position: "relative",
+            order:{xs:2 ,sm:1}
           }}
         >
           <Box
@@ -95,19 +97,20 @@ const SingleMoviePage = () => {
               width: "100%",
               height: "100%",
               display: "flex",
+              
               flexDirection: "column",
             }}
           >
-            <Box
-              sx={{
-                position: "absolute",
-                right: 0,
-                top: 0,
-                zIndex: "20",
-                height: "100%",
-              }}
-            ></Box>
+          <Box sx={{ backgroundColor: "#0f79af",marginTop:'20px' ,width:'95%',padding:'10px',borderRadius:1,color:'white',display:{xs:'block',sm:'none'}}}>
+          <Link to='/'>
+            <Box sx={{display:"flex",alignItems:'center',color:'white',justifyContent:'center'}}>
+              <span ><PlayArrowIcon/></span>
+              <span style={{marginLeft:12,fontSize:'18px',textTransform:'capitalize',}}>play</span>
+           </Box>
+         </Link>
+       </Box>
             <h3
+              className="moveHeader"
               style={{
                 marginTop: "48px",
                 fontSize: 35,
@@ -115,6 +118,7 @@ const SingleMoviePage = () => {
                 lineHeight: "36px",
                 color: "white",
                 textTransform: "capitalize",
+          
               }}
             >
               {film && film.title}
@@ -128,6 +132,7 @@ const SingleMoviePage = () => {
                 fontSize: "17px",
                 lineHeight: "24px",
                 color: "#8197a4",
+                justifyContent:{xs: 'center', sm:'start'}
               }}
             >
               <p>{hour && hour}</p>
@@ -136,6 +141,7 @@ const SingleMoviePage = () => {
               </p>
             </Box>
             <p
+              className="filmOverView"
               style={{
                 fontSize: "17px",
                 lineHeight: "24px",
@@ -152,7 +158,7 @@ const SingleMoviePage = () => {
               <Box
                 sx={{
                   color: "#8197a4",
-                  fontSize: "17px",
+                  fontSize:{xs:'14px',sm: "17px",},
                   textTransform: "capitalize",
                 }}
               >
@@ -164,7 +170,7 @@ const SingleMoviePage = () => {
                 sx={{
                   paddingLeft: "50px",
                   textTransform: "capitalize",
-                  fontSize: "17px",
+                  fontSize:{xs:'14px',sm: "17px",},
                   color: "#79b8f3",
                 }}
               >
@@ -199,10 +205,10 @@ const SingleMoviePage = () => {
                 </p>
               </Box>
             </Box>
-            <Box sx={{ marginTop: "50px" }}>
-            <Box sx={{ backgroundColor: "#0f79af",width:'100px',padding:'10px',borderRadius:1,color:'white'}}>
+            <Box sx={{ marginTop: "50px", }}>
+            <Box sx={{ backgroundColor: "#0f79af",width:'100px',padding:'10px',borderRadius:1,color:'white',display:{xs:'none',sm:'block'}}}>
               <Link to='/'>
-                <Box sx={{display:"flex",alignItems:'center',color:'white'}}>
+                <Box sx={{display:"flex",alignItems:'center',color:'white', }}>
                   <span ><PlayArrowIcon/></span>
                   <span style={{marginLeft:12,fontSize:'18px',textTransform:'capitalize'}}>play</span>
                </Box>
@@ -215,14 +221,14 @@ const SingleMoviePage = () => {
           sx={{
             width: "100%",
             position: "relative",
-
+            order:{xs:1},
             height: "500px",
           }}
         >
           <img
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
             src={
-              film && `https://image.tmdb.org/t/p/w300/${film.backdrop_path}`
+              film && `https://image.tmdb.org/t/p/w1280/${film.backdrop_path}`
             }
             alt=""
           />
@@ -230,6 +236,7 @@ const SingleMoviePage = () => {
         <Box
           sx={{
             position: "absolute",
+            display:{xs:'none',sm:'block'},
             zIndex: "1",
             top: 0,
             left: "50%",
@@ -247,3 +254,16 @@ const SingleMoviePage = () => {
 };
 
 export default SingleMoviePage;
+
+
+// line 103 
+
+// <Box
+// sx={{
+//   position: "absolute",
+//   right: 0,
+//   top: 0,
+//   zIndex: "20",
+//   height: "100%",
+// }}
+// ></Box>
