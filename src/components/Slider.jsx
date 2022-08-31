@@ -17,6 +17,7 @@ const Slider = () => {
     )
   }
 
+  
   useEffect(()=>{
     fetchData()
   },[])

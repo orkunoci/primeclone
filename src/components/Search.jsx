@@ -43,7 +43,9 @@ const Search = ({openSearch}) => {
     <TextField 
     placeholder="Search"
       onChange={(e)=>{setQuery(e.target.value)}}
+      
       InputProps={{
+        
         startAdornment: (
           <InputAdornment position="end">
             <SearchIcon sx={{color:'white'}}/>
@@ -52,10 +54,10 @@ const Search = ({openSearch}) => {
       }}
       sx={{
       
-        width:'300px',
+        width:{lg:'300px' , sm:'145px'},
         display:{xs:'none' ,sm:'block'},
-     
-        padding:'10px',
+        padding:0,
+        
         borderRadius:'none',
         '& .MuiOutlinedInput-root':{
           borderColor:"white",

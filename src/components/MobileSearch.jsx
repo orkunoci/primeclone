@@ -39,7 +39,7 @@ const MobileSearch = ({openSearch}) => {
   }
   return (
     <>
-    <Box sx={{position:"absolute", left:0,backgroundColor:'black',paddingY:20 } }>
+    <Box sx={{position:"absolute", left:0,backgroundColor:'#344150'} }>
     <form style={{position:"relative"}} >
     {
       <TextField 
@@ -57,7 +57,7 @@ const MobileSearch = ({openSearch}) => {
               width:'100%',
               display:{xs:'block',sm:'none'},
               padding:'10px',
-              borderRadius:'none',
+          
               '& .MuiOutlinedInput-root':{
                 borderColor:"white",
                 color:"white",

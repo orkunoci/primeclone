@@ -34,7 +34,7 @@ const Navbar = () => {
       paddingY: 2,
     },
   }));
-  const [openSearch, setOpenSearch] = useState(true);
+  const [openSearch, setOpenSearch] = useState(false);
   const handleSearch = () => {
     setOpenSearch(!openSearch);
   };
@@ -83,7 +83,7 @@ const Navbar = () => {
             <Categories />
           </Box>
         <Box sx={{display:'flex',alignItems:'center'}}> 
-        <IconButton onClick={handleSearch} sx={{width:'100%'}}>
+        <IconButton onClick={handleSearch} >
         {openSearch ? (
           <CloseIcon
             sx={{
@@ -115,7 +115,7 @@ const Navbar = () => {
       <Search/>
      {openSearch ? <MobileSearch openSearch={openSearch} /> : null}
       <Box sx={{ display: "flex", alignItems: "center", marginRight: 2 }}>
-        <AccountCircleIcon sx={{ marginX: 2 ,order:2}} paddingRight={2} /> 
+        {openSearch ? null : <AccountCircleIcon sx={{ marginX:{sm:2, xs:1} ,order:2,}} paddingRight={2} />} 
         <Typography
           paddingRight={2}
           variant="body2"

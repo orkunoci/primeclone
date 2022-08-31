@@ -111,4 +111,7 @@ code {
     font-size: 14px !important;
     text-align: center !important;
   }
+  .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 5px !important;
+  }
 }
